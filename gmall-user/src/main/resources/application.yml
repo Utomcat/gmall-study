@@ -1,0 +1,7 @@
+#服务端口号设置
+server:
+  port: 8080
+#spring boot 的多环境配置
+spring:
+  profiles:
+    active: dev

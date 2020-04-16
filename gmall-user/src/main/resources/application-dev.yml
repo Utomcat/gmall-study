@@ -1,0 +1,19 @@
+#Spring 数据源的配置
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/gmall-study?useUnicode=true&characterEncoding=UTF-8&userSSL=false&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#MyBatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+#后台SQL日志打印配置
+logging:
+  level:
+    com:
+      ranyk: debug
