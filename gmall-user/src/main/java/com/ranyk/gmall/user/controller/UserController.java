@@ -1,8 +1,9 @@
 package com.ranyk.gmall.user.controller;
 
-import com.ranyk.gmall.user.entity.UmsMember;
-import com.ranyk.gmall.user.entity.UmsMemberReceiveAddress;
-import com.ranyk.gmall.user.service.UserService;
+
+import com.ranyk.gmall.entity.UmsMember;
+import com.ranyk.gmall.entity.UmsMemberReceiveAddress;
+import com.ranyk.gmall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

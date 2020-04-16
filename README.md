@@ -202,7 +202,7 @@ http {
 ```java
 package com.ranyk.gmall.user.dao;
 
-import com.ranyk.gmall.user.entity.UmsMember;
+import com.ranyk.gmall.entity.UmsMember;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -223,8 +223,8 @@ public interface UmsMemberMapper extends Mapper<UmsMember> {
 package com.ranyk.gmall.user.service.impl;
 
 import com.ranyk.gmall.user.dao.UmsMemberMapper;
-import com.ranyk.gmall.user.entity.UmsMember;
-import com.ranyk.gmall.user.service.UserService;
+import com.ranyk.gmall.entity.UmsMember;
+import com.ranyk.gmall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -380,3 +380,49 @@ public class GmallUserApplication {
 
 }
 ```
+> 6. 提示`Detected both slf4j-log4j12.jar AND log4j-over-slf4j.jar on the class path, preempting StackOverflowError.`的错误
+> ，出现以上的错误是因为日志类`slf4j-log4j12`和`log4j-over-slf4j`发生了冲突，需要屏蔽当前环境的这两个日志类，屏蔽的话就需要将对应的类包进行注释掉
+>在当前环境下需要在`gmall-parent`的`pom.xml`文件对应的类包依赖中做如下的两个类做如下配置
+```xml
+<dependencys>
+     <!-- https://mvnrepository.com/artifact/io.searchbox/jest -->
+    <dependency>
+        <groupId>io.searchbox</groupId>
+        <artifactId>jest</artifactId>
+        <version>${jest.version}</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <dependency>
+        <groupId>redis.clients</groupId>
+        <artifactId>jedis</artifactId>
+        <version>${jedis.version}</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+</dependencys>
+```
+
+> 7. 在多项目的环境下，需要注意在父项目的的节点中使用标签`dependencyManagement`进行对依赖的版本号进行控制，在子项目中对对应的包依赖就不需要再
+>指定版本号，但是注意，只是不需要指定版本号，而非不需要引入对应的包依赖 [参考资料](https://blog.csdn.net/weixin_42114097/article/details/81391024)，
+>同时在对应的子项目的依赖配置中，`parent`父节点不在是对应的`springboot`的依赖，而是对应的父项目的依赖
+
+> 8. 对项目进行拆分，将对应的内容放入对应的模块中，gmall-api 所有接口和实体类存放的地方，gmall-common-util 对应的第三方工具类依赖存放的地方，
+>gmall-parent 所有子项目的父依赖，用于对依赖的版本控制，gmall-service-util 对应的数据库有关依赖和业务操作存放的低档，gmall-user 对于ums_member的有关操作
+>，gmall-web-util 对应的web有关的依赖引入，所有的子项目都要引入父节点`gmall-parent`

@@ -1,6 +1,7 @@
 package com.ranyk.gmall.user.dao;
 
-import com.ranyk.gmall.user.entity.UmsMemberReceiveAddress;
+
+import com.ranyk.gmall.entity.UmsMemberReceiveAddress;
 import tk.mybatis.mapper.common.Mapper;
 
 /**

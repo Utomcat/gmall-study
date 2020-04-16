@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ranyk.gmall.user.dao.UmsMemberMapper">
 
-    <resultMap id="BaseResultMap" type="com.ranyk.gmall.user.entity.UmsMember">
+    <resultMap id="BaseResultMap" type="com.ranyk.gmall.entity.UmsMember">
         <!--@Table ums_member-->
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="memberLevelId" column="member_level_id" jdbcType="INTEGER"/>
