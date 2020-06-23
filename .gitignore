@@ -2,3 +2,4 @@
 /demo/.mvn/
 /demo/demo.iml
 /demo/.gitignore
+/gmall-api/target/
