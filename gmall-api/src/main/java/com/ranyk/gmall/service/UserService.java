@@ -19,12 +19,14 @@ public interface UserService {
 
     /**
      * 查询所有的用户信息
+     *
      * @return 返回插叙的所有用户信息
      */
     List<UmsMember> getAllUser();
 
     /**
      * 根据用户ID进行获取改用户的地址信息
+     *
      * @param memberId 用户Id
      * @return 返回查询到的结果
      */

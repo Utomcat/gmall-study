@@ -6,6 +6,7 @@ import com.ranyk.gmall.entity.UmsMemberReceiveAddress;
 import com.ranyk.gmall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,31 +29,34 @@ public class UserController {
 
     /**
      * 默认请期初页面
+     *
      * @return 返回对应的首页名称，此处此时是返回一个字符串
      */
     @RequestMapping("index")
     @ResponseBody
-    public String index(){
+    public String index() {
         return "User Hello";
     }
 
     /**
      * 查询所有的用户
+     *
      * @return 返回查询结果
      */
-    @RequestMapping("getAllUser")
+    @GetMapping("getAllUser")
     @ResponseBody
-    public List<UmsMember> getAllUser(){
+    public List<UmsMember> getAllUser() {
         return userService.getAllUser();
     }
 
     /**
      * 查询所有的用户
+     *@RequestBody
      * @return 返回查询结果
      */
-    @RequestMapping("getReceiveAddressByMemberId")
+    @GetMapping("getReceiveAddressByMemberId")
     @ResponseBody
-    public List<UmsMemberReceiveAddress> getReceiveAddressByMemberId(Integer memberId){
+    public List<UmsMemberReceiveAddress> getReceiveAddressByMemberId( Integer memberId) {
         return userService.getReceiveAddressByMemberId(memberId);
     }
 

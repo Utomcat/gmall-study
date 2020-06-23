@@ -23,7 +23,7 @@ public class UmsMember implements Serializable {
     private static final long serialVersionUID = 731895660599518248L;
 
     /**
-     * 主键，为主键添加Id注解，同时设置该主键的主键策略
+     * 主键，为主键添加Id注解，同时设置该主键的主键返回策略(主键策略是用于插入后返回主键)
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
